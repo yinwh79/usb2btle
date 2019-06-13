@@ -1,0 +1,10 @@
+# -*- mode: Makefile -*-
+
+VENDOR = adafruit
+PLATFORM = nrf52
+BOARD = feather52840
+
+EXTRAPREFS = -prefs "build.sd_name=s140" -prefs "build.sd_version=6.1.1" -prefs "build.sd_fwid=0x00B6"
+
+USBVID = 239a
+USBPID = '0029|8029'

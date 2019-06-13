@@ -1,0 +1,10 @@
+# -*- mode: Makefile -*-
+
+VENDOR = adafruit
+PLATFORM = nrf52
+BOARD = feather52832
+
+EXTRAPREFS = -prefs "build.sd_flags=-DS132" -prefs "build.sd_name=s132" -prefs "build.sd_version=6.1.1" -prefs "build.sd_fwid=0x00B7"
+
+USBVID = 10c4
+USBPID = ea60

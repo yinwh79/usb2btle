@@ -1,0 +1,10 @@
+# -*- mode: Makefile -*-
+
+VENDOR = adafruit
+PLATFORM = samd
+BOARD = adafruit_trinket_m0
+
+USBVID = 239a
+USBPID = '001e|801e'
+
+IMGOFFSET = 0x2000

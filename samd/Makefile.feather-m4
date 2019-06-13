@@ -1,0 +1,12 @@
+# -*- mode: Makefile -*-
+
+VENDOR = adafruit
+PLATFORM = samd
+BOARD = adafruit_feather_m4
+
+EXTRAPREFS = -prefs "build.f_cpu=120000000L"
+
+USBVID = 239a
+USBPID = 0022
+
+IMGOFFSET = 0x4000

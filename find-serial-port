@@ -1,0 +1,16 @@
+#!/bin/sh
+
+if [ $# -ne 2 ]; then
+    echo "Usage: $0 vid pid" >&2
+    exit 1
+fi
+
+prefix=/dev/serial/by-id
+
+for dev in `ls $prefix`; do
+    if [ `udevadm info -q property --name $prefix/$dev | egrep -i "ID_VENDOR_ID=($1)|ID_MODEL_ID=($2)" | wc -l` -eq 2 ]; then
+        echo `readlink -f $prefix/$dev`
+        exit 0
+    fi
+done
+exit 2

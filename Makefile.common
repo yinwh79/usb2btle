@@ -1,0 +1,31 @@
+# -*- mode: Makefile -*-
+
+SKETCHDIR    = $(HOME)/Arduino
+PKGDIR       = $(HOME)/.arduino15/packages
+ARDUINODIR   = /usr/local/arduino
+ARM_GCC_PATH = /usr/local/gcc-arm-none-eabi/bin/
+
+BUILDDIR = ./build
+CACHEDIR = ./cache
+
+HARDWARE = -hardware $(ARDUINODIR)/hardware -hardware $(SKETCHDIR)/hardware
+TOOLS    = -tools $(ARDUINODIR)/hardware/tools -tools $(ARDUINODIR)/tools-builder -tools $(PKGDIR)/arduino/tools
+LIBS     = -libraries .. -libraries $(SKETCHDIR)/libraries
+PREFS    = -prefs compiler.path=$(ARM_GCC_PATH) $(EXTRAPREFS)
+
+FLAGS    = -compile -core-api-version 10609 -warnings none -quiet -build-cache $(CACHEDIR) -build-path $(BUILDDIR) -fqbn $(VENDOR):$(PLATFORM):$(BOARD) $(HARDWARE) $(TOOLS) $(LIBS) $(PREFS)
+
+$(BUILDDIR):
+	mkdir -p $(BUILDDIR)
+
+$(CACHEDIR):
+	mkdir -p $(CACHEDIR)
+
+clean:
+	rm -rf $(BUILDDIR) $(CACHEDIR)
+
+$(BUILDDIR)/%.ino.zip: %.ino $(BUILDDIR) $(CACHEDIR) Makefile ../Makefile.common
+	$(ARDUINODIR)/arduino-builder $(FLAGS) $<
+
+$(BUILDDIR)/%.ino.bin: %.ino $(BUILDDIR) $(CACHEDIR) Makefile ../Makefile.common
+	$(ARDUINODIR)/arduino-builder $(FLAGS) $<
