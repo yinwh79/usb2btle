@@ -49,6 +49,10 @@ board support packages being installed.
 You will also need the SimplyAtomic library, available
 [here](https://github.com/wizard97/SimplyAtomic.git).
 
+Some keyboards require the
+[USB_Host_Library_SAMD](https://github.com/gdsports/USB_Host_Library_SAMD.git)
+to probe properly. Try installing it if you're having issues.
+
 Once everything's set up, you'll need to build and flash the images to
 your board. The instructions are the same for both:
 
